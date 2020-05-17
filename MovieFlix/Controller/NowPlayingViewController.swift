@@ -7,8 +7,7 @@
 //
 
 import UIKit
-
-class NowPlayingViewController: UIViewController,Loadable {
+class NowPlayingViewController: UIViewController{
     var collectionView: UICollectionView! = nil
     var movies = [Movie]()
     var searchMovies = [MovieCellViewModel]()
@@ -33,30 +32,22 @@ class NowPlayingViewController: UIViewController,Loadable {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayoutDiffSection())
         collectionView.backgroundColor = UIColor(red: (240/255.0), green: (179/255.0), blue: (68/255.0), alpha: 1.0)
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "cell")
+        self.collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(collectionView)
-       collectionView.refreshControl = refreshControl
+        collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshMoviewData), for: .valueChanged)
         refreshControl.tintColor = UIColor.red
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.gray,]
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
-
     }
-    
     @objc private func refreshMoviewData(_ sender: Any) {
-        // Fetch Weather Data
-        showLoadingView()
         viewModel.getFactsData(isPlaying: true)
         collectionView.reloadData()
         self.refreshControl.endRefreshing()
-        hideLoadingView()
-        //self.activityIndicatorView.stopAnimating()
     }
-    
     func bindViewModel() {
-        
         viewModel.rowsCells.bindAndFire() { [weak self] _ in
             self?.collectionView.reloadData()
         }
@@ -72,18 +63,15 @@ extension NowPlayingViewController {
                                                heightDimension: .absolute(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitem: item, count: 2)
-        
         group.interItemSpacing = .fixed(CGFloat(2))
         let section = NSCollectionLayoutSection(group: group)
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         collectionView.reloadData()
     }
-    
     func createLayoutDiffSection() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
             layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
@@ -92,13 +80,11 @@ extension NowPlayingViewController {
                                                   heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2, bottom: 1, trailing: 2)
-            
             let groupHeight =
                 NSCollectionLayoutDimension.absolute(160)
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                    heightDimension: groupHeight)
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
-            
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 2, bottom: 1, trailing: 2)
             return section
@@ -106,10 +92,8 @@ extension NowPlayingViewController {
         return layout
     }
 }
-
 // MARK: - UICollectionViewDataSource method
 extension NowPlayingViewController : UICollectionViewDataSource, UICollectionViewDelegate{
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (isSearching == true) {
             return searchMovies.count
@@ -118,13 +102,11 @@ extension NowPlayingViewController : UICollectionViewDataSource, UICollectionVie
             return viewModel.rowsCells.value.count
         }
     }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CustomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCell
         var movie : MovieCellViewModel
         if (isSearching == true) {
             cell.isSearching = true
@@ -138,48 +120,41 @@ extension NowPlayingViewController : UICollectionViewDataSource, UICollectionVie
         cell.deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
         return cell
     }
-    
     @objc func deleteAction(sender: UIButton) {
         print("Button \(sender.tag) Clicked")
-         collectionView?.performBatchUpdates({
-           // if(viewModel.rowsCells.value.count > sender.tag + 2){
+        collectionView?.performBatchUpdates({
+            // if(viewModel.rowsCells.value.count > sender.tag + 2){
             if(isSearching == false){
-            if(sender.tag < viewModel.rowsCells.value.count){
-                self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
-                viewModel.rowsCells.value.remove(at: sender.tag)
-                if viewModel.rowsCells.value.count > 0 {
-                    self.collectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                if(sender.tag < viewModel.rowsCells.value.count){
+                    self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
+                    viewModel.rowsCells.value.remove(at: sender.tag)
+                    if viewModel.rowsCells.value.count > 0 {
+                        self.collectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                    }
                 }
-            
-           }
             }
             else{
                 if(sender.tag < searchMovies.count){
-                     self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
-                     searchMovies.remove(at: sender.tag)
-                     if searchMovies.count > 0 {
-                         self.collectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
-                     }
-                 
+                    self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
+                    searchMovies.remove(at: sender.tag)
+                    if searchMovies.count > 0 {
+                        self.collectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                    }
                 }
             }
-
-               }, completion: nil)
+        }, completion: nil)
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailView = self.storyboard?.instantiateViewController(withIdentifier: "DragViewController") as! DragViewController
+        let detailView = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         if (isSearching == true) {
             detailView.movie = searchMovies[indexPath.row]
             isSearching = false
         }else{
             detailView.movie = viewModel.rowsCells.value[indexPath.row]
-            
         }
         self.navigationController?.pushViewController(detailView, animated: true)
     }
 }
-
 // MARK: - UISearchResults method
 extension NowPlayingViewController : UISearchResultsUpdating,UISearchBarDelegate{
     func filterContent(for searchText: String) {
@@ -198,19 +173,15 @@ extension NowPlayingViewController : UISearchResultsUpdating,UISearchBarDelegate
             if(searchText == ""){
                 isSearching = false
             }else{
-             isSearching = true
+                isSearching = true
             }
             filterContent(for: searchText)
             self.collectionView.reloadData()
         }
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         searchBar.text = ""
         collectionView.reloadData()
-        
-        
     }
-    
 }
