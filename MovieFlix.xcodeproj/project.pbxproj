@@ -21,6 +21,7 @@
 		58FABE282470EEF00009973D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE272470EEF00009973D /* Result.swift */; };
 		58FABE2A2470EF490009973D /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE292470EF490009973D /* MovieModel.swift */; };
 		58FABE2C2470F1A20009973D /* AppServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2B2470F1A20009973D /* AppServerClient.swift */; };
+		58FABE2E2470F3490009973D /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2D2470F3490009973D /* MovieCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		58FABE272470EEF00009973D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		58FABE292470EF490009973D /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		58FABE2B2470F1A20009973D /* AppServerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServerClient.swift; sourceTree = "<group>"; };
+		58FABE2D2470F3490009973D /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		8190FD27C4F404E0C6212E2E /* Pods-MovieFlix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlix.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlix/Pods-MovieFlix.debug.xcconfig"; sourceTree = "<group>"; };
 		AF339661FF1C63216DEABBD6 /* Pods-MovieFlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlixTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlixTests/Pods-MovieFlixTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 		58FABE1C2470E9FC0009973D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				58FABE2D2470F3490009973D /* MovieCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				58FABE282470EEF00009973D /* Result.swift in Sources */,
 				58FABE262470EE5D0009973D /* Bindable.swift in Sources */,
 				58FABDFA2470E7260009973D /* AppDelegate.swift in Sources */,
+				58FABE2E2470F3490009973D /* MovieCellViewModel.swift in Sources */,
 				58FABE242470EAAB0009973D /* TopRatedViewController.swift in Sources */,
 				58FABE222470EA790009973D /* NowPlayingViewController.swift in Sources */,
 				58FABDFC2470E7260009973D /* SceneDelegate.swift in Sources */,
