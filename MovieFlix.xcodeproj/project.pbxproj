@@ -22,6 +22,7 @@
 		58FABE2A2470EF490009973D /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE292470EF490009973D /* MovieModel.swift */; };
 		58FABE2C2470F1A20009973D /* AppServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2B2470F1A20009973D /* AppServerClient.swift */; };
 		58FABE2E2470F3490009973D /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2D2470F3490009973D /* MovieCellViewModel.swift */; };
+		58FABE302470F4750009973D /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2F2470F4750009973D /* MovieViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		58FABE292470EF490009973D /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		58FABE2B2470F1A20009973D /* AppServerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServerClient.swift; sourceTree = "<group>"; };
 		58FABE2D2470F3490009973D /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
+		58FABE2F2470F4750009973D /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		8190FD27C4F404E0C6212E2E /* Pods-MovieFlix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlix.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlix/Pods-MovieFlix.debug.xcconfig"; sourceTree = "<group>"; };
 		AF339661FF1C63216DEABBD6 /* Pods-MovieFlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlixTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlixTests/Pods-MovieFlixTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				58FABE2D2470F3490009973D /* MovieCellViewModel.swift */,
+				58FABE2F2470F4750009973D /* MovieViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58FABE2A2470EF490009973D /* MovieModel.swift in Sources */,
+				58FABE302470F4750009973D /* MovieViewModel.swift in Sources */,
 				58FABE282470EEF00009973D /* Result.swift in Sources */,
 				58FABE262470EE5D0009973D /* Bindable.swift in Sources */,
 				58FABDFA2470E7260009973D /* AppDelegate.swift in Sources */,
