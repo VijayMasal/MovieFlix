@@ -23,13 +23,10 @@ class MovieViewModel {
             switch result {
             case .success(let movies):
                 guard movies.results.count > 0 else {
-                    //self?.rowsCells.value = [.empty]
                     return
                 }
-                //                self?.rowsCells.value = movies.results.compactMap { .normal(cellViewModel: $0 as MovieCellViewModel)}
                 self?.rowsCells.value = movies.results.compactMap({$0})
             case .failure(let error):
-                //                self?.rowsCells.value = [.error(message: error?.getErrorMessage() ?? "Loading failed, check network connection")]
                 print("error \(error.debugDescription)")
             }
         })

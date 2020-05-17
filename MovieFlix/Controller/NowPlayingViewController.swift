@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class NowPlayingViewController: UIViewController{
+class NowPlayingViewController: UIViewController,Loadable{
     var collectionView: UICollectionView! = nil
     var movies = [Movie]()
     var searchMovies = [MovieCellViewModel]()
@@ -15,6 +15,7 @@ class NowPlayingViewController: UIViewController{
     var isSearching : Bool = false
     let viewModel: MovieViewModel = MovieViewModel()
     private let refreshControl = UIRefreshControl()
+    var acttivityIndicator : UIActivityIndicatorView! = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -41,14 +42,19 @@ class NowPlayingViewController: UIViewController{
         refreshControl.tintColor = UIColor.red
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.gray,]
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
+        showLoadingView()
     }
     @objc private func refreshMoviewData(_ sender: Any) {
+        bindViewModel()
         viewModel.getFactsData(isPlaying: true)
         collectionView.reloadData()
         self.refreshControl.endRefreshing()
     }
     func bindViewModel() {
         viewModel.rowsCells.bindAndFire() { [weak self] _ in
+            if((self?.viewModel.rowsCells.value.count)! > 0){
+                self?.hideLoadingView()
+            }
             self?.collectionView.reloadData()
         }
     }
@@ -121,9 +127,7 @@ extension NowPlayingViewController : UICollectionViewDataSource, UICollectionVie
         return cell
     }
     @objc func deleteAction(sender: UIButton) {
-        print("Button \(sender.tag) Clicked")
         collectionView?.performBatchUpdates({
-            // if(viewModel.rowsCells.value.count > sender.tag + 2){
             if(isSearching == false){
                 if(sender.tag < viewModel.rowsCells.value.count){
                     self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])

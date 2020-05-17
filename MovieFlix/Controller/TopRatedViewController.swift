@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class TopRatedViewController: UIViewController{
+class TopRatedViewController: UIViewController,Loadable{
     var topRatedCollectionView: UICollectionView! = nil
     var searchTopRatedMovies = [MovieCellViewModel]()
     let searchController = UISearchController(searchResultsController: nil)
@@ -44,6 +44,8 @@ class TopRatedViewController: UIViewController{
         refreshControl.tintColor = UIColor.red
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.gray,]
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
+        showLoadingView()
+        
     }
     @objc private func refreshMoviewData(_ sender: Any) {
         viewModel.getFactsData(isPlaying: false)
@@ -52,6 +54,9 @@ class TopRatedViewController: UIViewController{
     }
     func bindViewModel() {
         viewModel.rowsCells.bindAndFire() { [weak self] _ in
+            if((self?.viewModel.rowsCells.value.count)! > 0){
+                self?.hideLoadingView()
+            }
             self?.topRatedCollectionView.reloadData()
         }
     }
@@ -124,7 +129,6 @@ extension TopRatedViewController : UICollectionViewDataSource, UICollectionViewD
         return cell
     }
     @objc func deleteAction(sender: UIButton) {
-        print("Button \(sender.tag) Clicked")
         topRatedCollectionView?.performBatchUpdates({
             if(isSearching == false){
                 if(sender.tag < viewModel.rowsCells.value.count){

@@ -50,6 +50,14 @@ class MovieCell: UICollectionViewCell,UIGestureRecognizerDelegate {
         return button
     }()
     
+    var acttivityIndicator : UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView()
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.color = UIColor.red
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.stopAnimating()
+        return activityIndicatorView
+    }()
     var viewModel: MovieCellViewModel? {
         didSet {
             bindViewModel()
@@ -82,6 +90,10 @@ class MovieCell: UICollectionViewCell,UIGestureRecognizerDelegate {
         self.moveImage.bottomAnchor.constraint(equalTo: self.container.bottomAnchor,constant: -5).isActive = true
         self.moveImage.topAnchor.constraint(equalTo: self.container.topAnchor,constant: 5).isActive = true
         self.moveImage.widthAnchor.constraint(equalToConstant:120).isActive = true
+        
+        self.moveImage.addSubview(acttivityIndicator)
+        acttivityIndicator.centerYAnchor.constraint(equalTo:self.moveImage.centerYAnchor).isActive = true
+        acttivityIndicator.centerXAnchor.constraint(equalTo:self.moveImage.centerXAnchor).isActive = true
         self.container.addSubview(self.titleLabel)
         titleLabel.topAnchor.constraint(equalTo:self.container.topAnchor,constant: 10).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo:self.moveImage.trailingAnchor, constant: 10).isActive = true
@@ -108,8 +120,14 @@ class MovieCell: UICollectionViewCell,UIGestureRecognizerDelegate {
 }
 extension MovieCell{
     func loadImage(urlString: String) {
+        acttivityIndicator.isHidden = true
+        acttivityIndicator.startAnimating()
         if let cacheImage = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
-            self.moveImage.image = cacheImage
+            DispatchQueue.main.async {
+                self.acttivityIndicator.isHidden = false
+                self.acttivityIndicator.stopAnimating()
+                self.moveImage.image = cacheImage
+            }
             return
         }
         guard let url = URL(string: urlString) else { return }
@@ -117,6 +135,8 @@ extension MovieCell{
             if let image = response.result.value{
                 self.imageCache.setObject(image, forKey: urlString as AnyObject)
                 DispatchQueue.main.async {
+                    self.acttivityIndicator.isHidden = false
+                    self.acttivityIndicator.stopAnimating()
                     self.moveImage.image = image
                 }
             }

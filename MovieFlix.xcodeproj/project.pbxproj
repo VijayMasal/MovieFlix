@@ -25,6 +25,7 @@
 		58FABE302470F4750009973D /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE2F2470F4750009973D /* MovieViewModel.swift */; };
 		58FABE322471027A0009973D /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE312471027A0009973D /* MovieCell.swift */; };
 		58FABE342471045B0009973D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE332471045B0009973D /* DetailViewController.swift */; };
+		58FABE3624710DD30009973D /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE3524710DD30009973D /* Loadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		58FABE2F2470F4750009973D /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		58FABE312471027A0009973D /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		58FABE332471045B0009973D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		58FABE3524710DD30009973D /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		8190FD27C4F404E0C6212E2E /* Pods-MovieFlix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlix.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlix/Pods-MovieFlix.debug.xcconfig"; sourceTree = "<group>"; };
 		AF339661FF1C63216DEABBD6 /* Pods-MovieFlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlixTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlixTests/Pods-MovieFlixTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +176,7 @@
 			children = (
 				58FABE252470EE5D0009973D /* Bindable.swift */,
 				58FABE272470EEF00009973D /* Result.swift */,
+				58FABE3524710DD30009973D /* Loadable.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				58FABE302470F4750009973D /* MovieViewModel.swift in Sources */,
 				58FABE282470EEF00009973D /* Result.swift in Sources */,
 				58FABE342471045B0009973D /* DetailViewController.swift in Sources */,
+				58FABE3624710DD30009973D /* Loadable.swift in Sources */,
 				58FABE322471027A0009973D /* MovieCell.swift in Sources */,
 				58FABE262470EE5D0009973D /* Bindable.swift in Sources */,
 				58FABDFA2470E7260009973D /* AppDelegate.swift in Sources */,

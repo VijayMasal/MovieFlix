@@ -43,7 +43,7 @@ extension Movie : MovieCellViewModel{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let s = dateFormatter.date(from: release_date)
-        dateFormatter.dateFormat = "MMM dd, yyyy"
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
         let dateString = dateFormatter.string(from: s! )
         return dateString
     }

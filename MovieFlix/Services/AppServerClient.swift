@@ -24,7 +24,8 @@ class AppServerClient {
         }
         Alamofire.request(url).responseJSON { response in
             if let error = response.error{
-                print("error \(error.localizedDescription)")
+                print("ERROR \(error.localizedDescription)")
+                completion(.failure(nil))
             }else{
                 if let data = response.data {
                     do{

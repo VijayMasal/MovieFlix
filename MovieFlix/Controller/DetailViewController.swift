@@ -30,6 +30,8 @@ class DetailViewController: UIViewController {
         titleLbl.text = movie?.titles
         descriptionLbl.text = movie?.overviews
         dateLbl.text = movie?.release_dates
+        ratingLbl.text = "\(movie?.vote_averages ?? 0)%"
+        durationLbl.text = "0 h 0 min"
         let strURL = "\(posterBaseUrl)\(movie?.poster_paths ?? "")"
         loadImage(urlString: strURL)
     }
