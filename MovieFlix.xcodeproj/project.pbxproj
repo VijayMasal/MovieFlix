@@ -15,6 +15,7 @@
 		58FABE032470E7280009973D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58FABE022470E7280009973D /* Assets.xcassets */; };
 		58FABE062470E7280009973D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58FABE042470E7280009973D /* LaunchScreen.storyboard */; };
 		58FABE112470E7280009973D /* MovieFlixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE102470E7280009973D /* MovieFlixTests.swift */; };
+		58FABE222470EA790009973D /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FABE212470EA790009973D /* NowPlayingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		58FABE0C2470E7280009973D /* MovieFlixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieFlixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FABE102470E7280009973D /* MovieFlixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFlixTests.swift; sourceTree = "<group>"; };
 		58FABE122470E7280009973D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58FABE212470EA790009973D /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		8190FD27C4F404E0C6212E2E /* Pods-MovieFlix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlix.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlix/Pods-MovieFlix.debug.xcconfig"; sourceTree = "<group>"; };
 		AF339661FF1C63216DEABBD6 /* Pods-MovieFlixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieFlixTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieFlixTests/Pods-MovieFlixTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +91,12 @@
 		58FABDF82470E7260009973D /* MovieFlix */ = {
 			isa = PBXGroup;
 			children = (
+				58FABE202470EA210009973D /* Services */,
+				58FABE1F2470EA190009973D /* Helper */,
+				58FABE1E2470EA100009973D /* Controller */,
+				58FABE1D2470EA080009973D /* View */,
+				58FABE1C2470E9FC0009973D /* ViewModel */,
+				58FABE1B2470E9EF0009973D /* Model */,
 				58FABDF92470E7260009973D /* AppDelegate.swift */,
 				58FABDFB2470E7260009973D /* SceneDelegate.swift */,
 				58FABDFF2470E7260009973D /* Main.storyboard */,
@@ -106,6 +114,49 @@
 				58FABE122470E7280009973D /* Info.plist */,
 			);
 			path = MovieFlixTests;
+			sourceTree = "<group>";
+		};
+		58FABE1B2470E9EF0009973D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		58FABE1C2470E9FC0009973D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		58FABE1D2470EA080009973D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		58FABE1E2470EA100009973D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				58FABE212470EA790009973D /* NowPlayingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		58FABE1F2470EA190009973D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		58FABE202470EA210009973D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A570357AB12E36B4620C56AF /* Pods */ = {
@@ -297,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58FABDFA2470E7260009973D /* AppDelegate.swift in Sources */,
+				58FABE222470EA790009973D /* NowPlayingViewController.swift in Sources */,
 				58FABDFC2470E7260009973D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
