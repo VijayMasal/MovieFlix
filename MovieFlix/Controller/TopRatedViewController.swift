@@ -128,25 +128,25 @@ extension TopRatedViewController : UICollectionViewDataSource, UICollectionViewD
         cell.deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
         return cell
     }
+    // MARK: - Delete Cell
     @objc func deleteAction(sender: UIButton) {
         topRatedCollectionView?.performBatchUpdates({
             if(isSearching == false){
                 if(sender.tag < viewModel.rowsCells.value.count){
-                    self.topRatedCollectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
                     viewModel.rowsCells.value.remove(at: sender.tag)
-                    if viewModel.rowsCells.value.count > 0 {
+                    self.topRatedCollectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
+                    if sender.tag + 1 < viewModel.rowsCells.value.count {
                         self.topRatedCollectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                    }
+                    if sender.tag + 2 < viewModel.rowsCells.value.count {
+                        self.topRatedCollectionView?.insertItems(at: [(NSIndexPath(row: sender.tag + 2, section: 0) as IndexPath) ])
                     }
                 }
-            }
-            else{
-                if(sender.tag < searchTopRatedMovies.count){
-                    self.topRatedCollectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
-                    searchTopRatedMovies.remove(at: sender.tag)
-                    if searchTopRatedMovies.count > 0 {
-                        self.topRatedCollectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                else{
+                    if viewModel.rowsCells.value.count == 1 {
+                        viewModel.rowsCells.value.remove(at: 0)
+                        self.topRatedCollectionView?.deleteItems(at: [(NSIndexPath(row: 0, section: 0) as IndexPath)])
                     }
-                    
                 }
             }
         }, completion: nil)

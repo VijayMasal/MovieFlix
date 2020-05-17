@@ -126,14 +126,25 @@ extension NowPlayingViewController : UICollectionViewDataSource, UICollectionVie
         cell.deleteButton.addTarget(self, action: #selector(deleteAction(sender:)), for: .touchUpInside)
         return cell
     }
+    // MARK: - Delete Cell
     @objc func deleteAction(sender: UIButton) {
+        print("tag \(sender.tag)")
         collectionView?.performBatchUpdates({
             if(isSearching == false){
                 if(sender.tag < viewModel.rowsCells.value.count){
-                    self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
                     viewModel.rowsCells.value.remove(at: sender.tag)
-                    if viewModel.rowsCells.value.count > 0 {
+                    self.collectionView?.deleteItems(at: [(NSIndexPath(row: sender.tag, section: 0) as IndexPath)])
+                    if sender.tag + 1 < viewModel.rowsCells.value.count {
                         self.collectionView?.reloadItems(at: [(NSIndexPath(row: sender.tag + 1, section: 0) as IndexPath) ])
+                    }
+                    if sender.tag + 2 < viewModel.rowsCells.value.count {
+                        self.collectionView?.insertItems(at: [(NSIndexPath(row: sender.tag + 2, section: 0) as IndexPath) ])
+                    }
+                }
+                else{
+                    if viewModel.rowsCells.value.count == 1 {
+                        viewModel.rowsCells.value.remove(at: 0)
+                        self.collectionView?.deleteItems(at: [(NSIndexPath(row: 0, section: 0) as IndexPath)])
                     }
                 }
             }
